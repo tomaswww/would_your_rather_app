@@ -3,6 +3,8 @@ import { receiveUsers } from "./users";
 import { receiveQuestions } from "./questions";
 import { receiveAuthedUser } from "./authedUser";
 
+const authedUser = 'sarahedo'
+
 export function handleInitialData () {
     return (dispatch) => {
         return getInitialData()
