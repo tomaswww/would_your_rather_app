@@ -4,12 +4,13 @@ import UnansweredQuestion from './unansweredQuestion'
 
 class Dashboard extends Component {
     render() {
-        console.log(this.props, 'here')
+        console.log(this.props.answeredIDs)
+        console.log(this.props.unAnsweredIDs)
         return (
             <div>
                 <h3>Unanswered Questions</h3>
                 <ul>
-                    {this.props.questionID.map((id)=>(
+                    {this.props.unAnsweredIDs.map((id)=>(
                         <li key={id}>
                             <UnansweredQuestion id={id} />
                         </li>
@@ -21,9 +22,13 @@ class Dashboard extends Component {
 }
 
 function mapStateToProps ({questions, users, authedUser}) {
+    const allIDs = Object.keys(questions)
+    const answeredIDs = Object.keys(users[authedUser].answers)
+    const unAnsweredIDs = allIDs.filter(item=> !answeredIDs.includes(item))
+
     return {
-        questionID: Object.keys(questions)
-            .sort((a,b)=> questions[b].id - questions[a].id),
+        answeredIDs,
+        unAnsweredIDs,
         users,
         authedUser
     }
