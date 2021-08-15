@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import users from '../reducers/users'
 
-class UnansweredQuestion extends Component {
+class QuestionList extends Component {
     toQuestion = (e, id) => {
         e.preventDefault()
         // redirect to question
@@ -52,4 +52,4 @@ function mapStateToProps ({authedUser, users, questions}, {id}) {
     }
 }
 
-export default connect(mapStateToProps)(UnansweredQuestion)
+export default connect(mapStateToProps)(QuestionList)

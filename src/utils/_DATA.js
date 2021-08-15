@@ -3,7 +3,7 @@ let users = {
   raphael: {
     id: 'raphael',
     name: 'Raphael Ninja',
-    avatarURL: '../../avatars/raphael.png',
+    avatarURL: '../../public/raphael.png',
     answers: {
       "8xf0y6ziyjabvozdd253nd": 'optionOne',
       "6ni6ok3ym7mf1p33lnez": 'optionOne',
@@ -15,7 +15,7 @@ let users = {
   leonardo: {
     id: 'leonardo',
     name: 'Leonardo Ninja',
-    avatarURL: '../../avatars/leonardo.png',
+    avatarURL: '../../public/leonardo.png',
     answers: {
       "vthrdm985a262al8qx3do": 'optionOne',
       "xj352vofupe1dqz9emx13r": 'optionTwo',
@@ -25,7 +25,7 @@ let users = {
   donatello: {
     id: 'donatello',
     name: 'Donatello Ninja',
-    avatarURL: '../../avatars/donatello.png',
+    avatarURL: '../../public/donatello.png',
     answers: {
       "xj352vofupe1dqz9emx13r": 'optionOne',
       "vthrdm985a262al8qx3do": 'optionTwo',
@@ -36,7 +36,7 @@ let users = {
   michelangelo: {
     id: 'michelangelo',
     name: 'Michelangelo Ninja',
-    avatarURL: '../../avatars/angelo.png',
+    avatarURL: '../../public/angelo.png',
     answers: {},
     questions: [],
   }

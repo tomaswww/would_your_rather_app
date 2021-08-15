@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import UnansweredQuestion from './unansweredQuestion'
+import QuestionList from './questionsList'
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
 
 class Dashboard extends Component {
     render() {
@@ -8,15 +10,36 @@ class Dashboard extends Component {
         console.log(this.props.unAnsweredIDs)
         return (
             <div>
-                <h3>Unanswered Questions</h3>
-                <ul>
-                    {this.props.unAnsweredIDs.map((id)=>(
-                        <li key={id}>
-                            <UnansweredQuestion id={id} />
-                        </li>
-                    ))}
-                </ul>
+                <Tabs>
+                    <TabList>
+                        <Tab>Unanswered Questions</Tab>
+                        <Tab>Answered Questions</Tab>
+                    </TabList>
+                    <TabPanel>
+                        <div>
+                            <ul>
+                                {this.props.unAnsweredIDs.map((id)=>(
+                                    <li key={id}>
+                                        <QuestionList id={id} />
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </TabPanel>
+                    <TabPanel>
+                        <div>
+                            <ul>
+                                {this.props.answeredIDs.map((id)=>(
+                                    <li key={id}>
+                                        <QuestionList id={id} />
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </TabPanel>
+                </Tabs>
             </div>
+            
         )
     }
 }
