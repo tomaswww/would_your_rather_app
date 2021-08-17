@@ -12,34 +12,49 @@ class Dashboard extends Component {
             <div>
                 <Tabs>
                     <TabList>
-                        <Tab>Unanswered Questions</Tab>
-                        <Tab>Answered Questions</Tab>
+                                <Tab>Home</Tab>
+                                <Tab>New Question</Tab>
+                                <Tab>Leader Board</Tab>
+                                <button>Logout</button>
                     </TabList>
                     <TabPanel>
-                        <div>
-                            <ul>
-                                {this.props.unAnsweredIDs.map((id)=>(
-                                    <li key={id}>
-                                        <QuestionList id={id} />
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
+                        <Tabs>
+                            <TabList>
+                                <Tab>Unanswered Questions</Tab>
+                                <Tab>Answered Questions</Tab>
+                            </TabList>
+                            <TabPanel>
+                                <div>
+                                    <ul>
+                                        {this.props.unAnsweredIDs.map((id)=>(
+                                            <li key={id}>
+                                                <QuestionList id={id} />
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </TabPanel>
+                            <TabPanel>
+                                <div>
+                                    <ul>
+                                        {this.props.answeredIDs.map((id)=>(
+                                            <li key={id}>
+                                                <QuestionList id={id} />
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </TabPanel>
+                        </Tabs>
                     </TabPanel>
                     <TabPanel>
-                        <div>
-                            <ul>
-                                {this.props.answeredIDs.map((id)=>(
-                                    <li key={id}>
-                                        <QuestionList id={id} />
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
+                            <p>Here goes the new question</p>
+                    </TabPanel>
+                    <TabPanel>
+                            <p>Here goes the Leader Board</p>
                     </TabPanel>
                 </Tabs>
             </div>
-            
         )
     }
 }
