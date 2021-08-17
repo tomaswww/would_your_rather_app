@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import '../App.css';
 import { connect } from 'react-redux'
 import QuestionList from './questionsList'
 import NewQuestion from './newQuestion';
@@ -13,13 +14,23 @@ import 'react-tabs/style/react-tabs.css';
 class Dashboard extends Component {
     render() {
         return (
-            <div>
+            <div className="App">
                 <Tabs>
                     <TabList>
+                        <div className="App-header">
+                            <div className="tabs">
                                 <Tab>Home</Tab>
                                 <Tab>New Question</Tab>
                                 <Tab>Leader Board</Tab>
+                            </div>
+                            <div className="user-info">
+                                <span>Hello! User</span>
+                                <span> </span>
+                                <span>IMAGE HERE</span>
+                                <span> </span>
                                 <button>Logout</button>
+                            </div>
+                        </div>
                     </TabList>
                     <TabPanel>
                         <Tabs>
