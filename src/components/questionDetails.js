@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import users from '../reducers/users'
 
+// Here I will add a conditional for displaying already responded or not responded questions
+
 class QuestionDetails extends Component {
     render() {
         return (

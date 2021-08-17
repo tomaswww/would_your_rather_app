@@ -4,14 +4,14 @@ import QuestionList from './questionsList'
 import NewQuestion from './newQuestion';
 import ScoreCard from './scoreCard';
 import LeaderBoard from './leaderBoard';
+import QuestionDetails from './questionDetails';
+import Login from './login';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 
 
 class Dashboard extends Component {
     render() {
-        console.log(this.props.answeredIDs)
-        console.log(this.props.unAnsweredIDs)
         return (
             <div>
                 <Tabs>
@@ -55,7 +55,7 @@ class Dashboard extends Component {
                             <NewQuestion />
                     </TabPanel>
                     <TabPanel>
-                            <ScoreCard />
+                            <LeaderBoard />
                     </TabPanel>
                 </Tabs>
             </div>
