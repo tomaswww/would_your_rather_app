@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import QuestionList from './questionsList'
+import NewQuestion from './newQuestion';
+import ScoreCard from './scoreCard';
+import LeaderBoard from './leaderBoard';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+
 
 class Dashboard extends Component {
     render() {
@@ -48,10 +52,10 @@ class Dashboard extends Component {
                         </Tabs>
                     </TabPanel>
                     <TabPanel>
-                            <p>Here goes the new question</p>
+                            <NewQuestion />
                     </TabPanel>
                     <TabPanel>
-                            <p>Here goes the Leader Board</p>
+                            <ScoreCard />
                     </TabPanel>
                 </Tabs>
             </div>
