@@ -13,6 +13,8 @@ import 'react-tabs/style/react-tabs.css';
 
 class Dashboard extends Component {
     render() {
+        const { authedUser } = this.props
+        const { users } = this.props
         return (
             <div className="App">
                 <Tabs>
@@ -24,10 +26,10 @@ class Dashboard extends Component {
                                 <Tab>Leader Board</Tab>
                             </div>
                             <div className="user-info">
-                                <span>Hello! User</span>
-                                <span> </span>
-                                <span>IMAGE HERE</span>
-                                <span> </span>
+                                <span>Hello! {users[authedUser].name}</span>
+                                <img 
+                                    className="header-avatar" 
+                                    src={users[authedUser].avatarURL}/>
                                 <button>Logout</button>
                             </div>
                         </div>
@@ -43,7 +45,7 @@ class Dashboard extends Component {
                                     <ul>
                                         {this.props.unAnsweredIDs.map((id)=>(
                                             <li key={id}>
-                                                <QuestionList id={id} />
+                                                <QuestionList id={id}/>
                                             </li>
                                         ))}
                                     </ul>

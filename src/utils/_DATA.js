@@ -3,7 +3,7 @@ let users = {
   raphael: {
     id: 'raphael',
     name: 'Raphael Ninja',
-    avatarURL: '../../public/raphael.png',
+    avatarURL: 'https://www.vectorkhazana.com/assets/images/products/Ninja-Turtles-Face.jpg',
     answers: {
       "8xf0y6ziyjabvozdd253nd": 'optionOne',
       "6ni6ok3ym7mf1p33lnez": 'optionOne',
@@ -15,7 +15,7 @@ let users = {
   leonardo: {
     id: 'leonardo',
     name: 'Leonardo Ninja',
-    avatarURL: '../../public/leonardo.png',
+    avatarURL: 'https://www.vectorkhazana.com/assets/images/products/Ninja-Turtles-Face-2.jpg',
     answers: {
       "vthrdm985a262al8qx3do": 'optionOne',
       "xj352vofupe1dqz9emx13r": 'optionTwo',
@@ -25,7 +25,7 @@ let users = {
   donatello: {
     id: 'donatello',
     name: 'Donatello Ninja',
-    avatarURL: '../../public/donatello.png',
+    avatarURL: 'https://www.vectorkhazana.com/assets/images/products/Ninja-Turtles-Face-3.jpg',
     answers: {
       "xj352vofupe1dqz9emx13r": 'optionOne',
       "vthrdm985a262al8qx3do": 'optionTwo',
@@ -36,7 +36,7 @@ let users = {
   michelangelo: {
     id: 'michelangelo',
     name: 'Michelangelo Ninja',
-    avatarURL: '../../public/angelo.png',
+    avatarURL: 'https://cf3.s3.souqcdn.com/item/2017/08/10/23/76/04/63/item_L_23760463_34310998.jpg',
     answers: {},
     questions: [],
   }

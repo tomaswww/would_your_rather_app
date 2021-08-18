@@ -5,10 +5,36 @@ import ScoreCard from './scoreCard'
 
 class LeaderBoard extends Component {
     render() {
+        const { users } = this.props
+        const results = []
+        Object.entries(users).map(element => {
+            console.log(element)
+            results.push({
+                "score":Object.keys(element[1].questions).length + Object.keys(element[1].answers).length,
+                "answered": Object.keys(element[1].answers).length,
+                "questions": Object.keys(element[1].questions).length,
+                "name": element[1].name,
+                "image": element[1].avatarURL,
+            })
+        });
+        // missing the sort here
         return (
-            <ScoreCard />
+            <div>
+                {results.map((element) => (
+                        <ScoreCard answered={element["answered"]} questions={element["questions"]} user={element["name"]} score={element["score"]} image={element["image"]}/>
+                ))}
+            </div>
         )
     }
 }
 
-export default LeaderBoard
+function mapStateToProps ({authedUser, users}) {
+    
+    // const hasAnswered = users[authedUser].answers[id] ? true : false
+    return {
+        authedUser,
+        users
+    }
+}
+
+export default connect(mapStateToProps)(LeaderBoard)

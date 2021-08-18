@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import '../App.css';
 import { connect } from 'react-redux'
 import users from '../reducers/users'
 
@@ -7,7 +8,7 @@ import users from '../reducers/users'
 class QuestionDetails extends Component {
     render() {
         return (
-            <div className='box'>
+            <div className='question-box'>
                 <h1>User asks:</h1>
                 <hr></hr>
                 <h5>Avatar Here</h5>
