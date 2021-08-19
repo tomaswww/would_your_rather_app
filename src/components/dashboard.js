@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import '../App.css';
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router';
 import QuestionList from './questionsList'
 import NewQuestion from './newQuestion';
 import ScoreCard from './scoreCard';
@@ -9,6 +10,7 @@ import QuestionDetails from './questionDetails';
 import Login from './login';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import { Link } from 'react-router-dom';
 
 
 class Dashboard extends Component {
@@ -24,15 +26,15 @@ class Dashboard extends Component {
                                 <Tab>Home</Tab>
                                 <Tab>New Question</Tab>
                                 <Tab>Leader Board</Tab>
-                                <Tab>Login</Tab>
-                                <Tab>Question Details</Tab>
                             </div>
                             <div className="user-info">
                                 <span>Hello! {users[authedUser].name}</span>
                                 <img 
                                     className="header-avatar" 
                                     src={users[authedUser].avatarURL}/>
-                                <button>Logout</button>
+                                <Link to='/login'>
+                                    <button>Logout</button>
+                                </Link>
                             </div>
                         </div>
                     </TabList>
@@ -71,12 +73,6 @@ class Dashboard extends Component {
                     </TabPanel>
                     <TabPanel>
                             <LeaderBoard />
-                    </TabPanel>
-                    <TabPanel>
-                            <Login />
-                    </TabPanel>
-                    <TabPanel>
-                            <QuestionDetails />
                     </TabPanel>
                 </Tabs>
             </div>

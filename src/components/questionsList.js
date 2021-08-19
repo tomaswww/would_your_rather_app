@@ -1,13 +1,10 @@
 import React, { Component } from 'react'
+import { Link,withRouter } from 'react-router-dom'
 import '../App.css'
 import { connect } from 'react-redux'
 import users from '../reducers/users'
 
 class QuestionList extends Component {
-    toQuestion = (e, id) => {
-        e.preventDefault()
-        // redirect to question
-    }
     render() {
         const { question, users } = this.props
         const {
@@ -31,7 +28,9 @@ class QuestionList extends Component {
                     <div className='question-text'>
                         <h3>Would you rather</h3>
                         <h5>...{optionOne.text}...</h5>
-                        <button onClick={(e)=> this.toQuestion(e, id)}>View Poll</button>
+                        <Link to={`/question/${id}`}>
+                            <button >View Poll</button>
+                        </Link>
                     </div>
                     
                 </div>
@@ -50,4 +49,4 @@ function mapStateToProps ({authedUser, users, questions}, {id}) {
     }
 }
 
-export default connect(mapStateToProps)(QuestionList)
+export default withRouter(connect(mapStateToProps)(QuestionList))
