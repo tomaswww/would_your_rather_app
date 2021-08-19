@@ -15,9 +15,7 @@ class App extends Component {
       return (
         <Router>
           <div>
-                  <Route path='/' exact component={Dashboard}/>
                   <Route path='/login' component={Login}/>
-                  <Route path='/question/:id' component={questionDetails}/>
           </div>
           <Redirect to='/login' />
         </Router>
