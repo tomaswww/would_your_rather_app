@@ -2,12 +2,14 @@ import React, { Component } from 'react'
 import '../App.css'
 import logo  from '../logo.png'
 import { connect } from 'react-redux'
-import { receiveAuthedUser } from '../actions/authedUser'
+import { changeAuthedUser } from '../actions/authedUser'
+import { Redirect } from 'react-router-dom'
 import users from '../reducers/users'
 
 class Login extends Component {
     state = {
-        user: ''
+        user: '',
+        toHome: false,
     }
 
     handleChange = (e) => {
@@ -22,10 +24,21 @@ class Login extends Component {
         const { user } = this.state
         const { dispatch } = this.props
 
-        dispatch(receiveAuthedUser(user))
+        console.log("about to dispatch: ",user)
+        dispatch(changeAuthedUser(user))
+
+        this.setState(() => ({
+        toHome: user === '' ? false : true,
+        }))
     }
     render() {
         const { users } = this.props
+        const { user, toHome } = this.state
+
+        if (toHome == true) {
+            return <Redirect to='/' />
+        }
+
         return (
             <div className='login-box'>
                 <div className='login-box-header'>
@@ -37,17 +50,17 @@ class Login extends Component {
                         <image src={logo} alt='login-logo'> </image>
                     </div>
                     <h3>Sign in </h3>
-                    <form action="">
+                    <form onSubmit={this.handleSubmit}>
                         <div className='login-form'>
                             <label for="users">Select a user: </label>
-                            <select name="users" id="users">
+                            <select name="users" id="users" onChange={this.handleChange}>
                                     <option></option>
                                 { Object.entries(users).map((user)=>(
                                     <option value={user[1].id}>{user[1].name}</option>
                                 ))}
                             </select>
                         </div>
-                        <input type="submit" value="Submit" />
+                        <button type="submit"/>
                     </form>
                 </div>
             </div>

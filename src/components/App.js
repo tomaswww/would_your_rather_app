@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import Dashboard from './dashboard';
@@ -11,12 +11,25 @@ class App extends Component {
     this.props.dispatch(handleInitialData())
   }
   render() {
+    if (this.props.authedUser === 'notLogged') {
+      return (
+        <Router>
+          <div>
+                  <Route path='/' exact component={Dashboard}/>
+                  <Route path='/login' component={Login}/>
+                  <Route path='/question/:id' component={questionDetails}/>
+          </div>
+          <Redirect to='/login' />
+        </Router>
+      )
+    }
+    else {
       return (
         <Router>
           <div className='container'>
-            {this.props.loading === true
-              ? null
-              : <div>
+            {this.props.authedUser === null
+            ? null
+            : <div>
                   <Route path='/' exact component={Dashboard}/>
                   <Route path='/login' component={Login}/>
                   <Route path='/question/:id' component={questionDetails}/>
@@ -24,12 +37,14 @@ class App extends Component {
           </div>
         </Router>
     );
+    } 
   }
 }
 
 function mapStateToProps({authedUser}) {
+  console.log(authedUser)
   return {
-    loading: authedUser === null
+    authedUser,
   }
 }
 
