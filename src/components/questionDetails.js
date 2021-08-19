@@ -7,23 +7,52 @@ import users from '../reducers/users'
 
 class QuestionDetails extends Component {
     render() {
+        const { question, author, users } = this.props        
+        const avatarURL = users[author].avatarURL
+        const name = users[author].name
         return (
-            <div className='question-box'>
-                <h1>User asks:</h1>
-                <hr></hr>
-                <h5>Avatar Here</h5>
-                <h1>Would you rather ... </h1>
-                <form>
-                    <label for="questions">Would you rather ...</label>
-                    <select name="questions" id="questions" multiple>
-                    <option value="a">Option A</option>
-                    <option value="b">Option B</option>
-                    </select>
-                    <input type="submit" value="Submit"/>
-                </form>
+            <div className='question-detail-box'>
+                <div className='question-header'>
+                    <h1>{name} asks:</h1>
+                </div>
+                <div className='question-detail-body'>
+                    <img src={avatarURL} className='question-detail-avatar'></img>
+                    <div className='question-text'> 
+                        <h1>Would you rather ... </h1>
+                        <form>
+                            <input 
+                                type="button" 
+                                key={question['id']}
+                                value={question['optionOne'].text} 
+                                onClick={this.handleOptionChange} 
+                                className='question-detail-button'
+                                    />
+                            <h1>- OR -</h1>
+                            <input 
+                                type="button" 
+                                key={question['id']}
+                                value={question['optionTwo'].text} 
+                                onClick={this.handleOptionChange}
+                                className='question-detail-button'
+                                    />
+                        </form>
+                    </div>
+                </div>
             </div>
         )
     }
 }
 
-export default QuestionDetails
+function mapStateToProps ({authedUser, users, questions}, {id}) {
+    const question = questions['8xf0y6ziyjabvozdd253nd']
+    const author = questions['8xf0y6ziyjabvozdd253nd'].author
+    // const hasAnswered = users[authedUser].answers[id] ? true : false
+    return {
+        authedUser,
+        question,
+        users,
+        author
+    }
+}
+
+export default connect(mapStateToProps)(QuestionDetails)

@@ -24,6 +24,8 @@ class Dashboard extends Component {
                                 <Tab>Home</Tab>
                                 <Tab>New Question</Tab>
                                 <Tab>Leader Board</Tab>
+                                <Tab>Login</Tab>
+                                <Tab>Question Details</Tab>
                             </div>
                             <div className="user-info">
                                 <span>Hello! {users[authedUser].name}</span>
@@ -69,6 +71,12 @@ class Dashboard extends Component {
                     </TabPanel>
                     <TabPanel>
                             <LeaderBoard />
+                    </TabPanel>
+                    <TabPanel>
+                            <Login />
+                    </TabPanel>
+                    <TabPanel>
+                            <QuestionDetails />
                     </TabPanel>
                 </Tabs>
             </div>

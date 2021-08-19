@@ -9,8 +9,7 @@ class QuestionList extends Component {
         // redirect to question
     }
     render() {
-        const { question } = this.props
-        const { users } = this.props
+        const { question, users } = this.props
         const {
             author, optionOne, id
         } = question
