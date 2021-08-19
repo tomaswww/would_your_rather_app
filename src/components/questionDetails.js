@@ -7,9 +7,10 @@ import users from '../reducers/users'
 
 class QuestionDetails extends Component {
     render() {
-        const { question, author, users } = this.props        
+        const { question, author, users, answeredByUser } = this.props        
         const avatarURL = users[author].avatarURL
         const name = users[author].name
+        console.log(answeredByUser)
         return (
             <div className='question-detail-box'>
                 <div className='question-header'>
@@ -44,14 +45,16 @@ class QuestionDetails extends Component {
 }
 
 function mapStateToProps ({authedUser, users, questions}, {id}) {
-    const question = questions['8xf0y6ziyjabvozdd253nd']
-    const author = questions['8xf0y6ziyjabvozdd253nd'].author
+    const question = questions['xj352vofupe1dqz9emx13r']
+    const author = questions['xj352vofupe1dqz9emx13r'].author
+    const answeredByUser = users[authedUser].answers['xj352vofupe1dqz9emx13r'] ? true : false
     // const hasAnswered = users[authedUser].answers[id] ? true : false
     return {
         authedUser,
         question,
         users,
-        author
+        author,
+        answeredByUser,
     }
 }
 
