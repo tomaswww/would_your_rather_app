@@ -2,9 +2,28 @@ import React, { Component } from 'react'
 import '../App.css'
 import logo  from '../logo.png'
 import { connect } from 'react-redux'
+import { receiveAuthedUser } from '../actions/authedUser'
 import users from '../reducers/users'
 
 class Login extends Component {
+    state = {
+        user: ''
+    }
+
+    handleChange = (e) => {
+        const user = e.target.value
+        this.setState(()=> ({
+            user: user,
+        }))
+    }
+    handleSubmit = (e) => {
+        e.preventDefault()
+
+        const { user } = this.state
+        const { dispatch } = this.props
+
+        dispatch(receiveAuthedUser(user))
+    }
     render() {
         const { users } = this.props
         return (
@@ -24,7 +43,6 @@ class Login extends Component {
                             <select name="users" id="users">
                                     <option></option>
                                 { Object.entries(users).map((user)=>(
-                                    console.log(user),
                                     <option value={user[1].id}>{user[1].name}</option>
                                 ))}
                             </select>

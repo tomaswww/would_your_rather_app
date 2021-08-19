@@ -1,10 +1,42 @@
 import React, { Component } from 'react'
 import '../App.css'
 import { connect } from 'react-redux'
+import { handleQuestion } from '../actions/questions'
 import users from '../reducers/users'
 
 class NewQuestion extends Component {
+    state = {
+        optionOne: '',
+        optionTwo: '',
+    }
+
+    handleChangeOne = (e) => {
+        const optionOne = e.target.value
+        this.setState(() => ({
+            optionOne: optionOne,
+        }))
+    }
+    handleChangeTwo = (e) => {
+        const optionTwo = e.target.value
+        this.setState(() => ({
+            optionTwo: optionTwo,
+        }))
+    }
+    handleSubmit = (e) => {
+        e.preventDefault()
+
+        const { optionOne, optionTwo } = this.state
+        const { dispatch } = this.props
+
+        dispatch(handleQuestion(optionOne,optionTwo))
+
+        this.setState(() => ({
+            optionOne: '',
+            optionTwo: '',
+        }))
+    }
     render() {
+        const { optionOne, optionTwo} = this.state
         return (
             <div className='question-box'>
                 <div className='question-header'>
@@ -13,15 +45,31 @@ class NewQuestion extends Component {
                 <div className='new-question-body'>
                     <h5>Complete the question</h5>
                     <h1>Would you rather ... </h1>
-                    <input placeholder="Enter option one text here"></input>
-                    <h3>OR</h3>
-                    <input placeholder="Enter option two text here"></input>
-                    <hr></hr>
-                    <button>Submit</button>
+                    <form onSubmit={this.handleSubmit}>
+                        <input 
+                            placeholder="Enter option one text here"
+                            value={optionOne}
+                            onChange={this.handleChangeOne}
+                            className='textarea'
+                            maxLength={100}
+                        ></input>
+                        <h3>OR</h3>
+                        <input 
+                            placeholder="Enter option two text here"
+                            value={optionTwo}
+                            onChange={this.handleChangeTwo}
+                            className='textarea'
+                            maxLength={100}
+                        ></input>
+                        <hr></hr>
+                        <button 
+                            type='submit'
+                            disabled={optionOne ==='' || optionTwo === ''}>Submit</button>
+                    </form>
                 </div>
             </div>
         )
     }
 }
 
-export default NewQuestion
+export default connect()(NewQuestion)

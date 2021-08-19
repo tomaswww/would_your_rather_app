@@ -1,3 +1,5 @@
+import { showLoading, hideLoading } from 'react-redux-loading'
+
 export const RECEIVE_AUTHEDUSER = 'RECEIVE_AUTHEDUSER'
 
 export function receiveAuthedUser(id) {
