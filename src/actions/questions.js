@@ -20,10 +20,11 @@ function addQuestion(question){
     }
 }
 
-export function handleQuestion(optionOneText,optionTwoText,authedUser){
+export function handleQuestion(optionOneText,optionTwoText,authedUser){     
     return (dispatch, getState) => {
         const {authedUser, questions, users} = getState()
         const question = {optionOneText,optionTwoText,authedUser}
+
         dispatch(showLoading())
         return _saveQuestion(question,users,questions)
         .then((question)=> dispatch(addQuestion(question)))

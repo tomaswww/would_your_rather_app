@@ -62,7 +62,7 @@ class Login extends Component {
                                 ))}
                             </select>
                         </div>
-                        <button type="submit"/>
+                        <button type="submit" className='question-detail-button'>Submit</button>
                     </form>
                 </div>
             </div>
