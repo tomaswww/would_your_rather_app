@@ -4,11 +4,12 @@ import logo  from '../logo.png'
 import { connect } from 'react-redux'
 import { changeAuthedUser } from '../actions/authedUser'
 import { Redirect } from 'react-router-dom'
+import { LoadingBar } from 'react-redux-loading';
 import users from '../reducers/users'
 
 class Login extends Component {
     state = {
-        user: '',
+        user: 'notLogged',
         toHome: false,
     }
 
@@ -24,12 +25,12 @@ class Login extends Component {
         const { user } = this.state
         const { dispatch } = this.props
 
-        console.log("about to dispatch: ",user)
         dispatch(changeAuthedUser(user))
-
-        this.setState(() => ({
-        toHome: user === '' ? false : true,
-        }))
+        return (
+            this.setState(() => ({
+            toHome: user === '' ? false : true,
+            }))
+        )
     }
     render() {
         const { users } = this.props
@@ -41,6 +42,7 @@ class Login extends Component {
 
         return (
             <div className='login-box'>
+                <LoadingBar />
                 <div className='login-box-header'>
                     <h2>Welcome to the Would You Rather App!</h2>
                     <h5>Please sign in to continue</h5>

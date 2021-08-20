@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import '../App.css'
 import { connect } from 'react-redux'
 import { handleQuestion } from '../actions/questions'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import users from '../reducers/users'
 
 class NewQuestion extends Component {
@@ -28,19 +28,24 @@ class NewQuestion extends Component {
         e.preventDefault()
 
         const { optionOne, optionTwo } = this.state
+        const { authedUser } = this.props
         const { dispatch } = this.props
-
-        dispatch(handleQuestion(optionOne,optionTwo))
+        dispatch(handleQuestion(optionOne,optionTwo, authedUser))
 
         this.setState(() => ({
-            toHome: optionOne === '' ? false : true
+            toHome: true
         }))
     }
     render() {
         const { optionOne, optionTwo, toHome} = this.state
 
         if (toHome == true) {
-            return <Redirect to='/' />
+            return (
+                <div>
+                    <p>Thanks for your question!</p>
+                </div>
+                
+            )
         }
 
         return (

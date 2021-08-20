@@ -20,25 +20,12 @@ function addQuestion(question){
     }
 }
 
-export function handleQuestion(optionOneText,optionTwoText){
+export function handleQuestion(optionOneText,optionTwoText,authedUser){
     return (dispatch, getState) => {
-        const {authedUser} = getState()
-
+        const {authedUser, questions, users} = getState()
+        const question = {optionOneText,optionTwoText,authedUser}
         dispatch(showLoading())
-
-        return _saveQuestion({
-            question: {
-                author: authedUser,
-                optionOne: {
-                        votes: [],
-                        text: optionOneText,
-                },
-                optiontwo: {
-                        votes: [],
-                        text: optionTwoText,
-                },
-            }
-        })
+        return _saveQuestion(question,users,questions)
         .then((question)=> dispatch(addQuestion(question)))
         .then(dispatch(hideLoading))
     }

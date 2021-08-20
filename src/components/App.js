@@ -5,6 +5,7 @@ import { handleInitialData } from '../actions/shared'
 import Dashboard from './dashboard';
 import Login from './login';
 import questionDetails from './questionDetails';
+import { LoadingBar } from 'react-redux-loading';
 
 class App extends Component {
   componentDidMount() {
@@ -14,6 +15,7 @@ class App extends Component {
     if (this.props.authedUser === 'notLogged') {
       return (
         <Router>
+            <LoadingBar />
           <div>
                   <Route path='/login' component={Login}/>
           </div>
@@ -24,6 +26,7 @@ class App extends Component {
     else {
       return (
         <Router>
+            <LoadingBar />
           <div className='container'>
             {this.props.authedUser === null
             ? null
