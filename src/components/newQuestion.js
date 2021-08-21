@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import '../App.css'
 import { connect } from 'react-redux'
 import { handleQuestion } from '../actions/questions'
-import { Redirect, Link } from 'react-router-dom'
-import users from '../reducers/users'
 
 class NewQuestion extends Component {
     state = {

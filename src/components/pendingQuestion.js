@@ -1,13 +1,46 @@
 import React, { Component } from 'react'
 import '../App.css';
 import { connect } from 'react-redux'
-import users from '../reducers/users'
-
-// Here I will add a conditional for displaying already responded or not responded questions
+import { handleAnswerQuestion } from '../actions/questions'
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
+import { LoadingBar } from 'react-redux-loading'
+import dashboard from './dashboard';
 
 class PendingQuestion extends Component {
+    state = {
+        toHome: false
+    }
+
+    handleOptionChange = (e) => {
+            const optionSelected = e.target.value
+
+            const { id } = this.props
+            const { dispatch } = this.props
+
+            console.log("this is the answer: ",optionSelected,id)
+
+            dispatch(handleAnswerQuestion(id, optionSelected))
+            
+            this.setState(() => ({
+            toHome: true
+        }))
+    }      
+
     render() {
-        const { name, avatarURL, question, authedUser, id } = this.props        
+        const { name, avatarURL, id, question } = this.props  
+        const { toHome } = this.state
+
+        if (toHome == true) {
+            return (
+                <Router>
+                    <LoadingBar />
+                    <div>
+                            <Route path='/' component={dashboard}/>
+                    </div>
+                    <Redirect to='/' />
+                </Router>
+            )
+        }
         
         return (
             <div className='question-detail-box'>
@@ -18,23 +51,19 @@ class PendingQuestion extends Component {
                     <img src={avatarURL} className='question-detail-avatar'></img>
                     <div className='question-detail-text'> 
                         <h1>Would you rather ... </h1>
-                        <form>
-                            <input 
+                            <button 
                                 type="button" 
                                 key='optionTwo'
-                                value={question['optionOne'].text} 
+                                value='optionOne' 
                                 onClick={this.handleOptionChange} 
-                                className='question-detail-button'
-                                    />
+                                className='question-detail-button'>{question['optionOne'].text}</button>
                             <h1>- OR -</h1>
-                            <input 
+                            <button 
                                 type="button" 
                                 key='optionTwo'
-                                value={question['optionTwo'].text} 
+                                value='optionTwo'
                                 onClick={this.handleOptionChange}
-                                className='question-detail-button'
-                                    />
-                        </form>
+                                className='question-detail-button'>{question['optionTwo'].text}</button>
                     </div>
                 </div>
             </div>
