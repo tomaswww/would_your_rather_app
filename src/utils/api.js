@@ -70,7 +70,6 @@ export function _saveQuestion (question,users,questions) {
 }
 
 export function _saveQuestionAnswer ({ authedUser, qid, answer, users, questions }) {
-  console.log("this is the answer: ",answer)
   return new Promise((res, rej) => {
     setTimeout(() => {
       users = {

@@ -7,10 +7,10 @@ import users from '../reducers/users'
 
 class AnsweredQuestion extends Component {
     render() {
-        const { question, author, users, answeredByUser, authedUser, id, optionOneVotes, optionTwoVotes, classOptionTwo, classOptionOne } = this.props        
+        const { question, author, users, answeredByUser, authedUser, optionOneVotes, optionTwoVotes, classOptionTwo, classOptionOne } = this.props        
         const avatarURL = users[author].avatarURL
         const name = users[author].name
-        console.log(answeredByUser)
+        
         return (
             <div className='question-detail-box'>
                 <div className='question-detail-header'>

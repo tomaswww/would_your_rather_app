@@ -40,7 +40,7 @@ class NewQuestion extends Component {
         if (toHome == true) {
             return (
                 <div>
-                    <p>Thanks for your question!</p>
+                    <p className='App-header'>Thanks for your question!</p>
                 </div>
                 
             )

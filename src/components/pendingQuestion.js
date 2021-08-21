@@ -13,11 +13,8 @@ class PendingQuestion extends Component {
 
     handleOptionChange = (e) => {
             const optionSelected = e.target.value
-
             const { id } = this.props
             const { dispatch } = this.props
-
-            console.log("this is the answer: ",optionSelected,id)
 
             dispatch(handleAnswerQuestion(id, optionSelected))
             
@@ -27,7 +24,7 @@ class PendingQuestion extends Component {
     }      
 
     render() {
-        const { name, avatarURL, id, question } = this.props  
+        const { name, avatarURL, question } = this.props  
         const { toHome } = this.state
 
         if (toHome == true) {
