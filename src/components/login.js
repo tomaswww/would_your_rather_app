@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import '../App.css'
-import logo  from '../logo.png'
+import logo  from '../logo.svg'
 import { connect } from 'react-redux'
 import { changeAuthedUser } from '../actions/authedUser'
 import { Redirect } from 'react-router-dom'
@@ -48,22 +48,18 @@ class Login extends Component {
                     <h5>Please sign in to continue</h5>
                 </div>
                 <div className='login-body'> 
-                    <div className='login-logo'>
-                        <image src={logo} alt='login-logo'> </image>
-                    </div>
+                        <img src={logo} alt='login-logo' className='login-logo'/>
                     <h3>Sign in </h3>
-                    <form onSubmit={this.handleSubmit}>
-                        <div className='login-form'>
-                            <label for="users">Select a user: </label>
-                            <select name="users" id="users" onChange={this.handleChange}>
-                                    <option></option>
-                                { Object.entries(users).map((user)=>(
-                                    <option value={user[1].id}>{user[1].name}</option>
-                                ))}
-                            </select>
-                        </div>
-                        <button type="submit" className='question-detail-button'>Submit</button>
-                    </form>
+                        <form onSubmit={this.handleSubmit} className='login-form'>
+                                <label for="users">Select a user: </label>
+                                <select name="users" id="users" onChange={this.handleChange}>
+                                        <option></option>
+                                    { Object.entries(users).map((user)=>(
+                                        <option value={user[1].id}>{user[1].name}</option>
+                                    ))}
+                                </select>
+                            <button type="submit" className='login-detail-button'>Submit</button>
+                        </form>
                 </div>
             </div>
         )

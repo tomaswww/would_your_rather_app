@@ -11,12 +11,12 @@ class PendingQuestion extends Component {
         
         return (
             <div className='question-detail-box'>
-                <div className='question-header'>
+                <div className='question-detail-header'>
                     <h1>{name} asks:</h1>
                 </div>
                 <div className='question-detail-body'>
                     <img src={avatarURL} className='question-detail-avatar'></img>
-                    <div className='question-text'> 
+                    <div className='question-detail-text'> 
                         <h1>Would you rather ... </h1>
                         <form>
                             <input 

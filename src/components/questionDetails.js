@@ -5,8 +5,6 @@ import users from '../reducers/users'
 import AnsweredQuestion from './answeredQuestion';
 import PendingQuestion from './pendingQuestion';
 
-// Here I will add a conditional for displaying already responded or not responded questions
-
 class QuestionDetails extends Component {
     render() {
         const { question, author, users, answeredByUser, authedUser,id } = this.props        
@@ -30,9 +28,8 @@ class QuestionDetails extends Component {
     }
 }
 
-function mapStateToProps ({authedUser, users, questions}, {id}) {
-    id = 'xj352vofupe1dqz9emx13r'
-    // id = 'am8ehyc8byjqgar0jgpub9'
+function mapStateToProps ({authedUser, users, questions}, props) {
+    const { id } = props.match.params
     const question = questions[id]
     const author = questions[id].author
     const answeredByUser = users[authedUser].answers[id] ? true : false

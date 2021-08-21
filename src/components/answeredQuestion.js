@@ -13,21 +13,33 @@ class AnsweredQuestion extends Component {
         console.log(answeredByUser)
         return (
             <div className='question-detail-box'>
-                <div className='question-header'>
+                <div className='question-detail-header'>
                     <h1>{name} asks:</h1>
                 </div>
                 <div className='question-detail-body'>
                     <img src={avatarURL} className='question-detail-avatar'></img>
-                    <div className='question-text'> 
+                    <div className='question-detail-text'> 
                         <h1>Would you rather ... </h1>
                             <div className={classOptionOne}>
                                 <p>{question['optionOne'].text}</p>
                                 <p>Votes: {optionOneVotes}</p>
+                                {classOptionOne !== 'question-option-selected'
+                                ? null
+                                : <div className='selected-question-avatar-box'>
+                                    <img src={users[authedUser].avatarURL} alt='user-avatar' className='selected-question-avatar'></img>
+                                </div>
+                                 }
                             </div>
                             <h1>- OR -</h1>
                             <div className={classOptionTwo}>
                                 <p>{question['optionTwo'].text}</p>
                                 <p>Votes: {optionTwoVotes}</p>
+                                {classOptionTwo !== 'question-option-selected'
+                                ? null
+                                : <div className='selected-question-avatar-box'>
+                                    <img src={users[authedUser].avatarURL} alt='user-avatar' className='selected-question-avatar'></img>
+                                </div> 
+                                }
                             </div>
                     </div>
                 </div>
