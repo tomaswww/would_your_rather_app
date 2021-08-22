@@ -8,20 +8,14 @@ class QuestionDetails extends Component {
     render() {
         const { answeredByUser,id } = this.props        
 
-        if (answeredByUser === true) {
             return (
                 <div>
-                    <AnsweredQuestion id={id}/>
+                    {answeredByUser === true 
+                    ? <AnsweredQuestion id={id}/>
+                    : <PendingQuestion id={id}/>
+                }
                 </div>
-            )
-        }
-        else {
-            return (
-                <div>
-                    <PendingQuestion id={id}/>
-                </div>
-            )
-        }
+            )        
     }
 }
 

@@ -26,15 +26,14 @@ class Login extends Component {
         const { dispatch } = this.props
 
         dispatch(changeAuthedUser(user))
-        return (
-            this.setState(() => ({
-            toHome: user === '' ? false : true,
+
+        this.setState(() => ({
+                toHome: user === 'notLogged' ? false : true,
             }))
-        )
     }
     render() {
         const { users } = this.props
-        const { user, toHome } = this.state
+        const { toHome } = this.state
 
         if (toHome == true) {
             return <Redirect to='/' />
@@ -58,7 +57,7 @@ class Login extends Component {
                                         <option value={user[1].id}>{user[1].name}</option>
                                     ))}
                                 </select>
-                            <button type="submit" className='login-detail-button'>Submit</button>
+                            <button type="submit" className='login-detail-button'>Sign In</button>
                         </form>
                 </div>
             </div>
