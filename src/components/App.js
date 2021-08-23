@@ -6,6 +6,9 @@ import Dashboard from './dashboard';
 import Login from './login';
 import questionDetails from './questionDetails';
 import { LoadingBar } from 'react-redux-loading';
+import newQuestion from './newQuestion';
+import leaderBoard from './leaderBoard';
+import Nav from './nav'
 
 class App extends Component {
   componentDidMount() {
@@ -28,13 +31,18 @@ class App extends Component {
         <Router>
             <LoadingBar />
           <div className='container'>
-            {this.props.authedUser === null
-            ? null
-            : <div>
-                  <Route path='/' exact component={Dashboard}/>
-                  <Route path='/login' component={Login}/>
-                  <Route path='/question/:id' component={questionDetails}/>
-                </div>}   
+              <div className="App">
+                  <Nav />
+              {this.props.authedUser === null
+              ? null
+              : <div>
+                    <Route path='/' exact component={Dashboard}/>
+                    <Route path='/login' component={Login}/>
+                    <Route path='/question/:id' component={questionDetails}/>
+                    <Route path='/add' component={newQuestion}/>
+                    <Route path='/leaderboard' component={leaderBoard}/>
+                  </div>}   
+              </div>
           </div>
         </Router>
     );

@@ -44,7 +44,6 @@ export function handleAnswerQuestion(qid,answer){
     return (dispatch, getState) => {
         const { authedUser, users, questions} = getState()
         const selection = {authedUser,qid,answer,users,questions}
-        console.log(selection)
         dispatch(showLoading())
         return _saveQuestionAnswer(selection)
         .then(()=> dispatch(answerQuestion(selection)))

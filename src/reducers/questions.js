@@ -18,17 +18,15 @@ export default function questions (state = {}, action) {
                 const qid = selection.qid
                 const optionSelected = selection.answer
                 const user = selection.authedUser
-                const test = selection.questions[qid]
+                const users = selection.users
                 const newVotes = [selection.questions[qid]][0][optionSelected].votes.concat([user])
                 console.log(newVotes)
                 const newResponses = [selection.users[user]][0]['answers']
                 newResponses[qid]=optionSelected
-                // .push({qid:optionSelected,})
                 console.log(newResponses)
                 return {
                     ...state,
-                    ...action.questions
-                }
+                }                
         default :
             return state
     }

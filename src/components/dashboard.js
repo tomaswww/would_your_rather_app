@@ -10,7 +10,8 @@ import QuestionDetails from './questionDetails';
 import Login from './login';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
+import Nav from './nav';
 
 
 class Dashboard extends Component {
@@ -18,63 +19,35 @@ class Dashboard extends Component {
         const { authedUser } = this.props
         const { users } = this.props
         return (
-            <div className="App">
+            <div className='App-body'>
                 <Tabs>
-                    <TabList>
-                        <div className="App-header">
-                            <div className="tabs">
-                                <Tab>Home</Tab>
-                                <Tab>New Question</Tab>
-                                <Tab>Leader Board</Tab>
+                        <TabList>
+                            <Tab>Unanswered Questions</Tab>
+                            <Tab>Answered Questions</Tab>
+                        </TabList>
+                        <TabPanel>
+                            <div>
+                                <ul>
+                                    {this.props.unAnsweredIDs.map((id)=>(
+                                        <li key={id}>
+                                            <QuestionList id={id}/>
+                                        </li>
+                                    ))}
+                                </ul>
                             </div>
-                            <div className="user-info">
-                                <span>Hello! {users[authedUser].name}</span>
-                                <img 
-                                    className="header-avatar" 
-                                    src={users[authedUser].avatarURL}/>
-                                <Link to='/login'>
-                                    <button>Logout</button>
-                                </Link>
+                        </TabPanel>
+                        <TabPanel>
+                            <div>
+                                <ul>
+                                    {this.props.answeredIDs.map((id)=>(
+                                        <li key={id}>
+                                            <QuestionList id={id} />
+                                        </li>
+                                    ))}
+                                </ul>
                             </div>
-                        </div>
-                    </TabList>
-                    <TabPanel>
-                        <Tabs>
-                            <TabList>
-                                <Tab>Unanswered Questions</Tab>
-                                <Tab>Answered Questions</Tab>
-                            </TabList>
-                            <TabPanel>
-                                <div>
-                                    <ul>
-                                        {this.props.unAnsweredIDs.map((id)=>(
-                                            <li key={id}>
-                                                <QuestionList id={id}/>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            </TabPanel>
-                            <TabPanel>
-                                <div>
-                                    <ul>
-                                        {this.props.answeredIDs.map((id)=>(
-                                            <li key={id}>
-                                                <QuestionList id={id} />
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            </TabPanel>
-                        </Tabs>
-                    </TabPanel>
-                    <TabPanel>
-                            <NewQuestion />
-                    </TabPanel>
-                    <TabPanel>
-                            <LeaderBoard />
-                    </TabPanel>
-                </Tabs>
+                        </TabPanel>
+                    </Tabs>
             </div>
         )
     }
