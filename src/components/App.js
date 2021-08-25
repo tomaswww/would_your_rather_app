@@ -30,19 +30,20 @@ class App extends Component {
       return (
         <Router>
             <LoadingBar />
-          <div className='container'>
-              <div className="App">
-                  <Nav />
+          <div className='container'> 
               {this.props.authedUser === null
               ? null
-              : <div>
+              : <div className="App">
+                  <Nav />
+                  <div>
                     <Route path='/' exact component={Dashboard}/>
                     <Route path='/login' component={Login}/>
                     <Route path='/question/:id' component={questionDetails}/>
                     <Route path='/add' component={newQuestion}/>
                     <Route path='/leaderboard' component={leaderBoard}/>
-                  </div>}   
-              </div>
+                  </div>
+                </div>
+                }   
           </div>
         </Router>
     );

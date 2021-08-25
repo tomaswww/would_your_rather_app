@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import '../App.css'
 import { connect } from 'react-redux'
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import { handleQuestion } from '../actions/questions'
+import { LoadingBar } from 'react-redux-loading'
+import dashboard from './dashboard';
 
 class NewQuestion extends Component {
     state = {
@@ -26,9 +29,9 @@ class NewQuestion extends Component {
         e.preventDefault()
 
         const { optionOne, optionTwo } = this.state
-        const { authedUser } = this.props
+        const { authedUser, users } = this.props
         const { dispatch } = this.props
-        dispatch(handleQuestion(optionOne,optionTwo, authedUser))
+        dispatch(handleQuestion(optionOne,optionTwo, authedUser,users))
 
         this.setState(() => ({
             toHome: true
@@ -39,9 +42,13 @@ class NewQuestion extends Component {
 
         if (toHome == true) {
             return (
-                <div>
-                    <p className='App-header'>Thanks for your question!</p>
-                </div>
+                <Router>
+                    <LoadingBar />
+                    <div>
+                            <Route path='/' component={dashboard}/>
+                    </div>
+                    <Redirect to='/' />
+                </Router>
                 
             )
         }
