@@ -53,9 +53,9 @@ class Login extends Component {
                         <form onSubmit={this.handleSubmit} className='login-form'>
                                 <label for="users">Select a user: </label>
                                 <select name="users" id="users" onChange={this.handleChange}>
-                                        <option></option>
+                                        <option key={101}></option>
                                     { Object.entries(users).map((user)=>(
-                                        <option value={user[1].id}>{user[1].name}</option>
+                                        <option value={user[1].id} key={user[1].id}>{user[1].name}</option>
                                     ))}
                                 </select>
                             <button type="submit" className='login-detail-button'>Sign In</button>

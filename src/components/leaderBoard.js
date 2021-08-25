@@ -19,7 +19,7 @@ class LeaderBoard extends Component {
         return (
             <div>
                 {results.map((element) => (
-                        <ScoreCard answered={element["answered"]} questions={element["questions"]} user={element["name"]} score={element["score"]} image={element["image"]}/>
+                        <ScoreCard answered={element["answered"]}  key={element["name"]} questions={element["questions"]} user={element["name"]} score={element["score"]} image={element["image"]}/>
                 ))}
             </div>
         )
