@@ -21,8 +21,10 @@ class AnsweredQuestion extends Component {
                     <div className='question-detail-text'> 
                         <h1>Would you rather ... </h1>
                             <div className={classOptionOne}>
-                                <p>{question['optionOne'].text}</p>
-                                <p>Votes: {optionOneVotes}</p>
+                                <div className='question-detail-options-text'>
+                                    <p>{question['optionOne'].text}</p>
+                                    <p>Votes: {optionOneVotes}</p>
+                                </div>
                                 {classOptionOne !== 'question-option-selected'
                                 ? null
                                 : <div className='selected-question-avatar-box'>
@@ -32,8 +34,10 @@ class AnsweredQuestion extends Component {
                             </div>
                             <h1>- OR -</h1>
                             <div className={classOptionTwo}>
-                                <p>{question['optionTwo'].text}</p>
-                                <p>Votes: {optionTwoVotes}</p>
+                                <div className='question-detail-options-text'>    
+                                    <p>{question['optionTwo'].text}</p>
+                                    <p>Votes: {optionTwoVotes}</p>
+                                </div>
                                 {classOptionTwo !== 'question-option-selected'
                                 ? null
                                 : <div className='selected-question-avatar-box'>
