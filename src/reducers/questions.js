@@ -8,7 +8,6 @@ export default function questions (state = {}, action) {
                 ...action.questions
             }
         case ADD_QUESTION :
-                const { question } = action
                 return {
                     ...state,
                     [action.question.id]: action.question
@@ -18,7 +17,6 @@ export default function questions (state = {}, action) {
                 const qid = selection.qid
                 const optionSelected = selection.answer
                 const user = selection.authedUser
-                const users = selection.users
                 const newVotes = [selection.questions[qid]][0][optionSelected].votes.concat([user])
                 console.log(newVotes)
                 const newResponses = [selection.users[user]][0]['answers']

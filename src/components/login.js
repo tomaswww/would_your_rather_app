@@ -4,8 +4,7 @@ import logo  from '../logo.svg'
 import { connect } from 'react-redux'
 import { changeAuthedUser } from '../actions/authedUser'
 import { Redirect } from 'react-router-dom'
-import { LoadingBar } from 'react-redux-loading';
-import users from '../reducers/users'
+import { hideLoading, LoadingBar, showLoading } from 'react-redux-loading';
 
 class Login extends Component {
     state = {
@@ -16,7 +15,7 @@ class Login extends Component {
     handleChange = (e) => {
         const user = e.target.value
         this.setState(()=> ({
-            user: user,
+            user,
         }))
     }
     handleSubmit = (e) => {
@@ -24,18 +23,20 @@ class Login extends Component {
 
         const { user } = this.state
         const { dispatch } = this.props
-
+        dispatch(showLoading())
         dispatch(changeAuthedUser(user))
 
         this.setState(() => ({
+                user: user,
                 toHome: user === 'notLogged' ? false : true,
             }))
+        hideLoading()
     }
     render() {
         const { users } = this.props
         const { toHome } = this.state
 
-        if (toHome == true) {
+        if (toHome === true) {
             return <Redirect to='/' />
         }
 

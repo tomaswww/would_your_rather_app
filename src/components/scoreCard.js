@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import '../App.css'
-import { connect } from 'react-redux'
-import users from '../reducers/users'
 
 class ScoreCard extends Component {
     render() {

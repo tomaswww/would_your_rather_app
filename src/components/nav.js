@@ -27,7 +27,8 @@ class Nav extends Component {
                 <span>Hello! {users[authedUser].name}</span>
                 <img 
                     className="header-avatar" 
-                    src={users[authedUser].avatarURL}/>
+                    src={users[authedUser].avatarURL}
+                    alt='header-avatar'/>
                 <Link to='/login'>
                     <button>Logout</button>
                 </Link>

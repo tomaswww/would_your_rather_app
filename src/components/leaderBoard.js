@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import users from '../reducers/users'
 import ScoreCard from './scoreCard'
 
 class LeaderBoard extends Component {
@@ -17,7 +16,6 @@ class LeaderBoard extends Component {
                 "image": element[1].avatarURL,
             })
         });
-        // missing the sort here
         return (
             <div>
                 {results.map((element) => (
@@ -29,8 +27,6 @@ class LeaderBoard extends Component {
 }
 
 function mapStateToProps ({authedUser, users}) {
-    
-    // const hasAnswered = users[authedUser].answers[id] ? true : false
     return {
         authedUser,
         users

@@ -40,7 +40,7 @@ class NewQuestion extends Component {
     render() {
         const { optionOne, optionTwo, toHome} = this.state
 
-        if (toHome == true) {
+        if (toHome === true) {
             return (
                 <Router>
                     <LoadingBar />

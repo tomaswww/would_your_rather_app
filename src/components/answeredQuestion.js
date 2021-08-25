@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
 import '../App.css';
 import { connect } from 'react-redux'
-import users from '../reducers/users'
 
-// Here I will add a conditional for displaying already responded or not responded questions
 
 class AnsweredQuestion extends Component {
     render() {
-        const { question, author, users, answeredByUser, authedUser, optionOneVotes, optionTwoVotes, classOptionTwo, classOptionOne } = this.props        
+        const { question, author, users, authedUser, optionOneVotes, optionTwoVotes, classOptionTwo, classOptionOne } = this.props        
         const avatarURL = users[author].avatarURL
         const name = users[author].name
         
@@ -17,7 +15,7 @@ class AnsweredQuestion extends Component {
                     <h1>{name} asks:</h1>
                 </div>
                 <div className='question-detail-body'>
-                    <img src={avatarURL} className='question-detail-avatar'></img>
+                    <img src={avatarURL} className='question-detail-avatar' alt='question-detail-avatar'></img>
                     <div className='question-detail-text'> 
                         <h1>Would you rather ... </h1>
                             <div className={classOptionOne}>

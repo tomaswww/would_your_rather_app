@@ -1,5 +1,3 @@
-import { showLoading, hideLoading } from 'react-redux-loading'
-
 export const RECEIVE_AUTHEDUSER = 'RECEIVE_AUTHEDUSER'
 export const CHANGE_AUTHEDUSER = 'CHANGE_AUTHEDUSER'
 

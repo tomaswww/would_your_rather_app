@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Link,withRouter } from 'react-router-dom'
 import '../App.css'
 import { connect } from 'react-redux'
-import users from '../reducers/users'
 
 class QuestionList extends Component {
     render() {

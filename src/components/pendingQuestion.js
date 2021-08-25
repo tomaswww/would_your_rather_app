@@ -27,7 +27,7 @@ class PendingQuestion extends Component {
         const { name, avatarURL, question } = this.props  
         const { toHome } = this.state
 
-        if (toHome == true) {
+        if (toHome === true) {
             return (
                 <Router>
                     <LoadingBar />
@@ -45,7 +45,7 @@ class PendingQuestion extends Component {
                     <h1>{name} asks:</h1>
                 </div>
                 <div className='question-detail-body'>
-                    <img src={avatarURL} className='question-detail-avatar'></img>
+                    <img src={avatarURL} className='question-detail-avatar' alt='question-detail-avatar'></img>
                     <div className='question-detail-text'> 
                         <h1>Would you rather ... </h1>
                             <button 
