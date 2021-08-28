@@ -51,7 +51,7 @@ class Login extends Component {
                         <img src={logo} alt='login-logo' className='login-logo'/>
                     <h3>Sign in </h3>
                         <form onSubmit={this.handleSubmit} className='login-form'>
-                                <label for="users">Select a user: </label>
+                                <label htmlFor="users">Select a user: </label>
                                 <select name="users" id="users" onChange={this.handleChange}>
                                         <option key={101}></option>
                                     { Object.entries(users).map((user)=>(
