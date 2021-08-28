@@ -1,4 +1,5 @@
 import { RECEIVE_QUESTIONS, ADD_QUESTION, ANSWER_QUESTION } from "../actions/questions";
+import { users } from "../utils/_DATA";
 
 export default function questions (state = {}, action) {
     switch(action.type) {
@@ -8,10 +9,15 @@ export default function questions (state = {}, action) {
                 ...action.questions
             }
         case ADD_QUESTION :
-                return {
-                    ...state,
-                    [action.question.id]: action.question
-                }
+            const { question, users } = action
+            const author = question['author']         
+            
+            return {
+                ...state,
+                [action.question.id]: action.question,
+                // [action.users[author].questions]: action.question,
+            }
+                
         case ANSWER_QUESTION :
                 const { selection } = action
                 const qid = selection.qid

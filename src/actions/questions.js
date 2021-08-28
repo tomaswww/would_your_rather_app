@@ -14,10 +14,11 @@ export function receiveQuestions(questions) {
     }
 }
 
-function addQuestion(question){
+function addQuestion(question, users){
     return {
         type: ADD_QUESTION,
-        question
+        question,
+        users,
     }
 }
 
@@ -31,11 +32,11 @@ function answerQuestion(selection){
 export function handleQuestion(optionOneText,optionTwoText,authedUser){     
     return (dispatch, getState) => {
         const {authedUser, questions, users} = getState()
-        const question = {optionOneText,optionTwoText,authedUser}
+        const question = {optionOneText,optionTwoText,authedUser, users}
 
         dispatch(showLoading())
         return _saveQuestion(question,users,questions)
-        .then((question)=> dispatch(addQuestion(question)))
+        .then((question)=> dispatch(addQuestion(question,users)))
         .then(dispatch(hideLoading))
     }
 }
