@@ -4,7 +4,7 @@ import logo  from '../logo.svg'
 import { connect } from 'react-redux'
 import Dashboard from './dashboard'
 import { handleSetAuthUser } from '../actions/authedUser'
-import { Redirect } from 'react-router-dom'
+import { Redirect, withRouter } from 'react-router-dom'
 import { hideLoading, LoadingBar, showLoading } from 'react-redux-loading';
 
 class Login extends Component {
@@ -26,6 +26,11 @@ class Login extends Component {
         const { dispatch } = this.props
         dispatch(showLoading())
         dispatch(handleSetAuthUser(user))
+
+        const { history } = this.props;
+        console.log(history)
+        let { from } = history.location.state || { from: { pathname: "/" } };
+        history.replace(from);
 
         this.setState(() => ({
                 user: '',
@@ -73,4 +78,4 @@ function mapStateToProps ({users}) {
 }
 
 
-export default connect(mapStateToProps)(Login)
+export default connect(mapStateToProps)(withRouter(Login))

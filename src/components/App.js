@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import Dashboard from './dashboard';
@@ -36,14 +36,14 @@ class App extends Component {
               ? null
               : <div className="App">
                   <Nav />
-                  <div>
-                    <Route path='/' exact component={Dashboard}/>
+                  <Switch>
                     <Route path='/login' component={Login}/>
+                    <Route path='/' exact component={Dashboard}/>
                     <Route path='/question/:id' component={questionDetails}/>
                     <Route path='/add' component={newQuestion}/>
                     <Route path='/leaderboard' component={leaderBoard}/>
                     <Route path='/404' component={NotFound}/>
-                  </div>
+                  </Switch>
                 </div>
                 }   
           </div>

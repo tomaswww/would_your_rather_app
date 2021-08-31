@@ -41,6 +41,7 @@ class NewQuestion extends Component {
     }
     render() {
         const { optionOne, optionTwo, toHome} = this.state
+        const { authedUser } = this.props
 
         if (toHome === true) {
             return (
