@@ -7,6 +7,7 @@ import { showLoading, hideLoading } from 'react-redux-loading'
 let authedUser = 'notLogged'
 
 export function handleInitialData () {
+
     return (dispatch) => {
         dispatch(showLoading())
         return getInitialData()

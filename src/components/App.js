@@ -9,6 +9,7 @@ import { LoadingBar } from 'react-redux-loading';
 import newQuestion from './newQuestion';
 import leaderBoard from './leaderBoard';
 import Nav from './nav'
+import NotFound from './notFound';
 
 class App extends Component {
   componentDidMount() {
@@ -41,6 +42,7 @@ class App extends Component {
                     <Route path='/question/:id' component={questionDetails}/>
                     <Route path='/add' component={newQuestion}/>
                     <Route path='/leaderboard' component={leaderBoard}/>
+                    <Route component={NotFound}/>
                   </div>
                 </div>
                 }   
@@ -52,6 +54,7 @@ class App extends Component {
 }
 
 function mapStateToProps({authedUser}) {
+  // let { authedUser } = getState()
   return {
     authedUser,
   }
