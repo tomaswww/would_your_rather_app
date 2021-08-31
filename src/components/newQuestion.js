@@ -34,6 +34,8 @@ class NewQuestion extends Component {
         dispatch(handleQuestion(optionOne,optionTwo, authedUser,users))
 
         this.setState(() => ({
+            optionOne: '',
+            optionTwo: '',
             toHome: true
         }))
     }
@@ -42,14 +44,7 @@ class NewQuestion extends Component {
 
         if (toHome === true) {
             return (
-                <Router>
-                    <LoadingBar />
-                    <div>
-                            <Route path='/' component={dashboard}/>
-                    </div>
-                    <Redirect to='/' />
-                </Router>
-                
+                    <Redirect to='/' component={dashboard}/>
             )
         }
 
@@ -88,4 +83,10 @@ class NewQuestion extends Component {
     }
 }
 
-export default connect()(NewQuestion)
+function mapStateToProps({authedUser}){
+    return{
+        authedUser
+    }
+}
+
+export default connect(mapStateToProps)(NewQuestion)

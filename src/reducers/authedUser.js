@@ -1,12 +1,12 @@
-import { RECEIVE_AUTHEDUSER, CHANGE_AUTHEDUSER } from "../actions/authedUser";
+import {REMOVE_AUTH_USER, SET_AUTH_USER} from '../actions/authedUser' 
 
-export default function authedUser (state = null, action) {
-    switch(action.type) {
-        case RECEIVE_AUTHEDUSER :
+export default function authUser (state= null, action){
+    switch(action.type){
+        case SET_AUTH_USER :
             return action.id
-        case CHANGE_AUTHEDUSER :
-            return action.id
+        case REMOVE_AUTH_USER :
+            return null
         default :
             return state
     }
-} 
+}

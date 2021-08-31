@@ -2,13 +2,14 @@ import React, { Component } from 'react'
 import '../App.css'
 import logo  from '../logo.svg'
 import { connect } from 'react-redux'
-import { changeAuthedUser } from '../actions/authedUser'
+import Dashboard from './dashboard'
+import { handleSetAuthUser } from '../actions/authedUser'
 import { Redirect } from 'react-router-dom'
 import { hideLoading, LoadingBar, showLoading } from 'react-redux-loading';
 
 class Login extends Component {
     state = {
-        user: 'notLogged',
+        user: '',
         toHome: false,
     }
 
@@ -24,20 +25,19 @@ class Login extends Component {
         const { user } = this.state
         const { dispatch } = this.props
         dispatch(showLoading())
-        dispatch(changeAuthedUser(user))
+        dispatch(handleSetAuthUser(user))
 
         this.setState(() => ({
-                user: user,
-                toHome: user === 'notLogged' ? false : true,
+                user: '',
+                toHome: true,
             }))
         hideLoading()
     }
     render() {
         const { users } = this.props
-        const { toHome } = this.state
 
-        if (toHome === true) {
-            return <Redirect to='/' />
+        if (this.state.toHome === true) {
+            return <Redirect to='/' component={Dashboard}/>
         }
 
         return (
@@ -68,7 +68,7 @@ class Login extends Component {
 
 function mapStateToProps ({users}) {
     return {
-        users
+        users,
     }
 }
 

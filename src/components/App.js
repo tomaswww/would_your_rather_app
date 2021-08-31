@@ -16,14 +16,14 @@ class App extends Component {
     this.props.dispatch(handleInitialData())
   }
   render() {
-    if (this.props.authedUser === 'notLogged') {
+    if (this.props.authedUser === null) {
       return (
         <Router>
             <LoadingBar />
           <div>
                   <Route path='/login' component={Login}/>
           </div>
-          <Redirect to='/login' />
+          <Redirect to='/login' component={Login}/>
         </Router>
       )
     }
@@ -42,7 +42,7 @@ class App extends Component {
                     <Route path='/question/:id' component={questionDetails}/>
                     <Route path='/add' component={newQuestion}/>
                     <Route path='/leaderboard' component={leaderBoard}/>
-                    <Route component={NotFound}/>
+                    <Route path='/404' component={NotFound}/>
                   </div>
                 </div>
                 }   
