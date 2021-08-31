@@ -44,9 +44,7 @@ class NewQuestion extends Component {
         const { authedUser } = this.props
 
         if (toHome === true) {
-            return (
-                    <Redirect to='/' component={dashboard}/>
-            )
+            return <Redirect to='/' component={dashboard}/>
         }
 
         return (
