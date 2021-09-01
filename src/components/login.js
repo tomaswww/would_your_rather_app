@@ -6,13 +6,12 @@ import Dashboard from './dashboard'
 import { handleSetAuthUser } from '../actions/authedUser'
 import { Redirect, withRouter } from 'react-router-dom'
 import { hideLoading, LoadingBar, showLoading } from 'react-redux-loading';
-import NewQuestion from './newQuestion'
 
 class Login extends Component {
     state = {
         user: '',
         toHome: false,
-        redirect: this.props.state
+        from: this.props
     }
 
     handleChange = (e) => {
@@ -25,7 +24,7 @@ class Login extends Component {
         e.preventDefault()
 
         const { user } = this.state
-        const {users, dispatch, history} = this.props 
+        const { dispatch, history} = this.props 
 
         dispatch(showLoading())
         dispatch(handleSetAuthUser(user))
@@ -35,18 +34,15 @@ class Login extends Component {
                 toHome: true,
             }))
         hideLoading()
+        // here the logic to redirect, now it sending to /, need to make it logic based on from:
         return history.push(this.props.location.state === undefined ? '/' : this.props.location.state.redirect);
     }
 
     render() {
         const { users } = this.props
         const { redirect } = this.state
-        console.log(redirect)
 
         if (this.state.toHome === true) {
-            if (redirect === '/add'){
-            return <Redirect to='/add' component={NewQuestion}/>
-            }
             return <Redirect to='/' component={Dashboard}/>
         }
 
@@ -76,9 +72,10 @@ class Login extends Component {
     }
 }
 
-function mapStateToProps ({users}) {
+function mapStateToProps ({users, location}) {
     return {
         users,
+        location,
     }
 }
 

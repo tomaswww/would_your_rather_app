@@ -45,8 +45,9 @@ class Dashboard extends Component {
 
 function mapStateToProps ({questions, users, authedUser}) {
     const questionsWithTimestamp = []
-    Object.entries(questions).map(question => {
-        questionsWithTimestamp.push({"id":question[0],"timestamp":question[1].timestamp})
+    Object.entries(questions).forEach((question) => {
+        questionsWithTimestamp.push({"id":question[0],"timestamp":question[1].timestamp}
+        )
     })
     const questionsSorted = questionsWithTimestamp.sort((a, b) => {return b.timestamp - a.timestamp;})
     const allIDsSorted = []

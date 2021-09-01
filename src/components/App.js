@@ -15,6 +15,7 @@ class App extends Component {
   componentDidMount() {
     this.props.dispatch(handleInitialData())
   }
+  
 
   PrivateRoute = ({ component: Component, ...rest }) => (
     <Route
@@ -22,11 +23,11 @@ class App extends Component {
       render={props =>
         this.props.authedUser !== null ? (
           <>
-            {props.match.path === "/questions/:question_id" &&
+            {props.match.path === "/question/:question_id" &&
             !Object.keys(this.props.questions).includes(
               props.match.params.question_id
             ) ? (
-              <Redirect to="/404" />
+              <Redirect component={NotFound}/>
             ) : (
               <Component {...props} />
             )}
@@ -35,7 +36,7 @@ class App extends Component {
           <Redirect
             to={{
               pathname: "/login",
-              state: { from: props.location }
+              state: { from: props.location },
             }}
           />
         )
@@ -43,8 +44,7 @@ class App extends Component {
     />
   );
 
-  render() {
-    
+  render() {    
       return (
         <Router>
             <LoadingBar />
@@ -60,15 +60,20 @@ class App extends Component {
                       <div>
                               <Route path='/login' component={Login}/>
                       </div>
-                      <Redirect to='/login' component={Login}/>
+                      <Redirect
+                            to={{
+                              pathname: "/login",
+                              state: { from: this.props.location },
+                            }}
+                      />
                   </Router>
                  : <Switch>
-                    <Route path='/login' exact component={Login}/>
+                    <this.PrivateRoute path='/login' exact component={Login}/>
                     <this.PrivateRoute path='/' exact component={Dashboard}/>
                     <this.PrivateRoute path='/question/:id' exact component={questionDetails}/>
                     <this.PrivateRoute path='/add' exact component={newQuestion}/>
                     <this.PrivateRoute path='/leaderboard' exact component={leaderBoard}/>
-                    <this.PrivateRoute component={NotFound}/>
+                    <this.PrivateRoute path='/404'component={NotFound}/>
                   </Switch>
                 }
                 </div> 
@@ -79,10 +84,11 @@ class App extends Component {
   }
 
 
-function mapStateToProps({authedUser}) {
+function mapStateToProps({authedUser,questions}) {
   // let { authedUser } = getState()
   return {
     authedUser,
+    questions,
   }
 }
 

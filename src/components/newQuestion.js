@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import '../App.css'
 import { connect } from 'react-redux'
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { handleQuestion } from '../actions/questions'
-import { LoadingBar } from 'react-redux-loading'
 import dashboard from './dashboard';
 
 class NewQuestion extends Component {
@@ -41,7 +40,6 @@ class NewQuestion extends Component {
     }
     render() {
         const { optionOne, optionTwo, toHome} = this.state
-        const { authedUser } = this.props
 
         if (toHome === true) {
             return <Redirect to='/' component={dashboard}/>
