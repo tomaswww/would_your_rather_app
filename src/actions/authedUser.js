@@ -1,16 +1,26 @@
-export const RECEIVE_AUTHEDUSER = 'RECEIVE_AUTHEDUSER'
-export const CHANGE_AUTHEDUSER = 'CHANGE_AUTHEDUSER'
+export const SET_AUTH_USER= "SET_AUTH_USER";
+export const REMOVE_AUTH_USER = "REMOVE_AUTH_USER";
 
-export function receiveAuthedUser(id) {
+export function setAuthUser (id){
     return {
-        type: RECEIVE_AUTHEDUSER,
-        id,
+        type: SET_AUTH_USER, id
     }
 }
 
-export function changeAuthedUser(id) {
+export function handleSetAuthUser(user){
+    return(dispatch) => {
+        dispatch(setAuthUser(user))
+    }
+}
+
+function removeAuthUser (){
     return {
-        type: CHANGE_AUTHEDUSER,
-        id,
+        type: REMOVE_AUTH_USER
+    }
+}
+
+export function handleRemoveAuthUser (){
+    return (dispatch) => {
+        dispatch(removeAuthUser())
     }
 }

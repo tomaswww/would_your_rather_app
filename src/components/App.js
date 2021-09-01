@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import Dashboard from './dashboard';
@@ -15,48 +15,80 @@ class App extends Component {
   componentDidMount() {
     this.props.dispatch(handleInitialData())
   }
-  render() {
-    if (this.props.authedUser === 'notLogged') {
-      return (
-        <Router>
-            <LoadingBar />
-          <div>
-                  <Route path='/login' component={Login}/>
-          </div>
-          <Redirect to='/login' />
-        </Router>
-      )
-    }
-    else {
+  
+
+  PrivateRoute = ({ component: Component, ...rest }) => (
+    <Route
+      {...rest}
+      render={props =>
+        this.props.authedUser !== null ? (
+          <>
+            {props.match.path === "/question/:question_id" &&
+            !Object.keys(this.props.questions).includes(
+              props.match.params.question_id
+            ) ? (
+              <Redirect component={NotFound}/>
+            ) : (
+              <Component {...props} />
+            )}
+          </>
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/login",
+              state: { from: props.location },
+            }}
+          />
+        )
+      }
+    />
+  );
+
+  render() {    
       return (
         <Router>
             <LoadingBar />
           <div className='container'> 
-              {this.props.authedUser === null
-              ? null
-              : <div className="App">
-                  <Nav />
-                  <div>
-                    <Route path='/' exact component={Dashboard}/>
-                    <Route path='/login' component={Login}/>
-                    <Route path='/question/:id' component={questionDetails}/>
-                    <Route path='/add' component={newQuestion}/>
-                    <Route path='/leaderboard' component={leaderBoard}/>
-                    <Route component={NotFound}/>
-                  </div>
-                </div>
-                }   
+               <div className="App">
+                 { this.props.authedUser === null
+                 ? null
+                 : <Nav />
+                 }
+                 { this.props.authedUser === null
+                 ?<Router>
+                      <LoadingBar />
+                      <div>
+                              <Route path='/login' component={Login}/>
+                      </div>
+                      <Redirect
+                            to={{
+                              pathname: "/login",
+                              state: { from: this.props.location },
+                            }}
+                      />
+                  </Router>
+                 : <Switch>
+                    <this.PrivateRoute path='/login' exact component={Login}/>
+                    <this.PrivateRoute path='/' exact component={Dashboard}/>
+                    <this.PrivateRoute path='/question/:id' exact component={questionDetails}/>
+                    <this.PrivateRoute path='/add' exact component={newQuestion}/>
+                    <this.PrivateRoute path='/leaderboard' exact component={leaderBoard}/>
+                    <this.PrivateRoute path='/404'component={NotFound}/>
+                  </Switch>
+                }
+                </div> 
           </div>
         </Router>
     );
     } 
   }
-}
 
-function mapStateToProps({authedUser}) {
+
+function mapStateToProps({authedUser,questions}) {
   // let { authedUser } = getState()
   return {
     authedUser,
+    questions,
   }
 }
 

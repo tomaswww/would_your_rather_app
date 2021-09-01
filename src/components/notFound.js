@@ -5,7 +5,6 @@ import { LoadingBar } from 'react-redux-loading'
 
 class NotFound extends Component {
     render() {
-
         return (
             <div className='login-box'>
                 <LoadingBar />

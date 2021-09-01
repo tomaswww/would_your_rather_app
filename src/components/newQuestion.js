@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import '../App.css'
 import { connect } from 'react-redux'
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { handleQuestion } from '../actions/questions'
-import { LoadingBar } from 'react-redux-loading'
 import dashboard from './dashboard';
 
 class NewQuestion extends Component {
@@ -34,6 +33,8 @@ class NewQuestion extends Component {
         dispatch(handleQuestion(optionOne,optionTwo, authedUser,users))
 
         this.setState(() => ({
+            optionOne: '',
+            optionTwo: '',
             toHome: true
         }))
     }
@@ -41,16 +42,7 @@ class NewQuestion extends Component {
         const { optionOne, optionTwo, toHome} = this.state
 
         if (toHome === true) {
-            return (
-                <Router>
-                    <LoadingBar />
-                    <div>
-                            <Route path='/' component={dashboard}/>
-                    </div>
-                    <Redirect to='/' />
-                </Router>
-                
-            )
+            return <Redirect to='/' component={dashboard}/>
         }
 
         return (
@@ -88,4 +80,10 @@ class NewQuestion extends Component {
     }
 }
 
-export default connect()(NewQuestion)
+function mapStateToProps({authedUser}){
+    return{
+        authedUser
+    }
+}
+
+export default connect(mapStateToProps)(NewQuestion)

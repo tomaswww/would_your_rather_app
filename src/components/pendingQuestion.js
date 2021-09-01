@@ -5,6 +5,7 @@ import { handleAnswerQuestion } from '../actions/questions'
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import { LoadingBar } from 'react-redux-loading'
 import dashboard from './dashboard';
+import NotFound from './notFound';
 
 class PendingQuestion extends Component {
     state = {
@@ -26,7 +27,6 @@ class PendingQuestion extends Component {
     render() {
         const { name, avatarURL, question } = this.props  
         const { toHome } = this.state
-
         if (toHome === true) {
             return (
                 <Router>
@@ -38,8 +38,8 @@ class PendingQuestion extends Component {
                 </Router>
             )
         }
-        
-        return (
+        if (question !== undefined){
+            return (
             <div className='question-detail-box'>
                 <div className='question-detail-header'>
                     <h1>{name} asks:</h1>
@@ -50,7 +50,7 @@ class PendingQuestion extends Component {
                         <h1>Would you rather ... </h1>
                             <button 
                                 type="button" 
-                                key='optionTwo'
+                                key='optionOne'
                                 value='optionOne' 
                                 onClick={this.handleOptionChange} 
                                 className='question-detail-button'>{question['optionOne'].text}</button>
@@ -64,15 +64,27 @@ class PendingQuestion extends Component {
                     </div>
                 </div>
             </div>
-        )
+            )
+        }
+        if (question === undefined){
+            return (
+                <Router>
+                    <LoadingBar />
+                    <div>
+                            <Route path='/404' component={NotFound}/>
+                    </div>
+                    <Redirect to='/404' />
+                </Router>
+            )
+        }                
     }
 }
 
 function mapStateToProps ({authedUser,users, questions}, {id}) {
     const question = questions[id]
-    const author = question['author']
-    const avatarURL = users[author].avatarURL
-    const name = users[author].name
+    const author = question ? question['author']: null
+    const avatarURL = author ? users[author].avatarURL : null
+    const name = author ? users[author].name : null
     return {
         authedUser,
         name,
@@ -81,4 +93,4 @@ function mapStateToProps ({authedUser,users, questions}, {id}) {
     }
 }
 
-export default connect(mapStateToProps)(PendingQuestion)
+export default connect(mapStateToProps, null)(PendingQuestion)
